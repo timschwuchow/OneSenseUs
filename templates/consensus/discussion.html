@@ -1,0 +1,26 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discussion</title>
+</head>
+<body>
+
+Proposal text: {{ parent.text }}
+<br>
+Comments
+<ol>
+    {%  for c in comment_list %}
+        <li>
+            {{ c.text }}
+        </li>
+    {%  endfor %}
+    <form method="post" action="{% url 'submitcomment' user.id discussion.id %}"> {% csrf_token %}
+        <input type="text" name="comment_input"/>
+        <input type="submit" value="Submit comment"/>
+    </form>
+</ol>
+</body>
+</html>

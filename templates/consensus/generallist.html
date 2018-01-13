@@ -1,0 +1,62 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project: {{ p.name }} General List</title>
+</head>
+<body>
+<h1 align="center">List of proposed generals for project {{ p.name }}</h1>
+
+<ol>
+    {% for g,ugv in uvl  %}
+    <li>
+
+        {%  if ugv.choice == ugv.XX  %}
+            <form action="{% url 'vote' u.id p.id g.id %}" method="post"}>
+                {%  csrf_token %}
+                <input class="novote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ g.num_up }}</span>
+                <input class="novote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ g.num_dw }}</span>
+            {{ g.text }}
+            </form>
+            <form action="{% url 'discussion' u.id g.discussion.id %}" method="get">
+                <input type="submit" value="Discussion"/>
+            </form>
+        {% elif ugv.choice == ugv.UP %}
+            <form action="{% url 'vote' u.id p.id g.id %}" method="post"}>
+                {%  csrf_token %}
+                <input class="upvote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ g.num_up }}</span>
+                <input class="novote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ g.num_dw }}</span>
+            {{ g.text }}
+            </form>
+            <form action="{% url 'discussion' u.id g.discussion.id %}" method="get">
+                <input type="submit" value="Discussion"/>
+            </form>
+        {% elif ugv.choice == ugv.DW %}
+            <form action="{% url 'vote' u.id p.id g.id %}" method="post"}>
+                {%  csrf_token %}
+                <input class="novote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ g.num_up }}</span>
+                <input class="dwvote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ g.num_dw }}</span>
+            {{ g.text }}
+            </form>
+            <form action="{% url 'discussion' u.id g.discussion.id %}" method="get">
+                <input type="submit" value="Discussion"/>
+            </form>
+        {%  endif %}
+        <form action="{% url 'general' u.id p.id g.id %}" method="get">
+            <button type="submit">See specifics</button>
+        </form>
+    </li>
+    {%  endfor %}
+    <br>
+    <form action="{% url 'genconstructor' u.id p.id %}" method="get">
+        <button type="submit">Propose new general</button>
+    </form>
+    <form action="{% url 'generalbundlelist' u.id p.id %}" method="get">
+        <input type="submit" value="Return to list of general bundles"/>
+    </form>
+</ol>
+</body>
+</html>

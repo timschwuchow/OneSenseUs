@@ -1,0 +1,55 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }}General Bundle List</title>
+</head>
+<body>
+
+
+    <h2 align="center"> Project {{ p.name }}: General Bundles List</h2>
+    <ol>
+        {%  for b,uv in uvl  %}
+        <li>
+            <div class="bundleentrybox">
+                {%  if uv.choice == uv.XX  %}
+                    <form action="{% url 'bundlevote' u.id p.id b.id %}" method="post">
+                        {%  csrf_token %}
+                        <input class="novote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ b.num_up }}</span>
+                        <input class="novote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ b.num_dw }}</span>
+                    </form>
+            {% elif uv.choice == uv.UP %}
+                    <form action="{% url 'bundlevote' u.id p.id b.id %}" method="post">
+                        {%  csrf_token %}
+                        <input class="upvote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ b.num_up }}</span>
+                        <input class="novote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ b.num_dw }}</span>
+                    </form>
+            {% elif uv.choice == uv.DW %}
+                    <form action="{% url 'bundlevote' u.id p.id b.id %}" method="post">
+                        {%  csrf_token %}
+                        <input class="novote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ b.num_up }}</span>
+                        <input class="dwvote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ b.num_dw }}</span>
+                    </form>
+            {%  endif %}
+            {{ b.text }}
+            <form action="{%  url 'discussion' u.id b.discussion.id %}" method="get">
+                <input type="submit" value="Go to discussion page"/>
+            </form>
+        </div>
+    </li>
+    {%  endfor %}
+
+    </ol>
+    <form action="{% url 'generalbundleconstructor' u.id p.id %}" method="get">
+        <button type="submit">Propose new general bundle</button>
+    </form>
+    <form action="{% url 'generallist' u.id p.id %}" method="get">
+        <input type="submit" name="generalview" value="View list of generals"/>
+    </form>
+        <form action="{% url 'projectlist' u.id %}" method="get">
+            <input type="submit" name="backtomain" value="Back to project list"/>
+        </form>
+</body>
+</html>

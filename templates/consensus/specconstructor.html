@@ -1,0 +1,23 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }}: New Specific Proposal Form</title>
+</head>
+<body>
+    <h1 align="Center">Propose New Specific Form</h1>
+    <p><strong>General text:</strong>: {{ g.general_text }}</p>
+    <p> Choices </p>
+    <form action="{% url 'speccreate' u.id p.id g.id %}" method="post"> {% csrf_token %}
+        {{ f }}
+        <input type="submit" value="Submit"/>
+    </form>
+
+    Don't see a facet you want?  Create one here
+    <form action="{% url 'facetconstructor' u.id p.id g.id %}" method="get">
+        <input type="submit" value="Create new facet"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body class="login">
+
+<div align="center" >
+    <h1> Consensus Project Main Page</h1><br>
+    <strong> <span style="color:red">
+        Bad user name or password.  Try again
+    </span>
+    </strong>
+
+    <form action="{% url 'trylogin' %}" method="post"> {% csrf_token %}
+        User: <input type="text" name="name" /><br>
+        Pass: <input type="password" name="password"/><br>
+        <input type="submit" name="submit" value="Submit"/><br>
+    </form>
+    Not a user?  <a href="{% url 'signup' %}">Sign up!</a>
+</div>
+
+</body>
+</html>

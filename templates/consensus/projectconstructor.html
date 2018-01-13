@@ -1,0 +1,17 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a New Project</title>
+</head>
+<body>
+    <h1 align="Center">Create a new project</h1>
+    <form action="{% url 'projectcreate' u.id %}" method="post"> {% csrf_token %}
+        <input type="text" name="project_name"/>
+        <input type="submit" value="Submit"/>
+    </form>
+
+</body>
+</html>

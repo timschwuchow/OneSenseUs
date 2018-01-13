@@ -1,0 +1,58 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }}General Page</title>
+</head>
+<body>
+
+
+    <h4 align="center"> General Text</h4>
+    <p align="center"> {{ g.text }}</p>
+    <h2 align="center"> Specifics list</h2>
+    <ol>
+        {%  for s,uv in uvl  %}
+        <li>
+            {%  if uv.choice == uv.XX  %}
+
+                <form action="{% url 'svote' u.id p.id g.id s.id %}" method="post">
+                    {%  csrf_token %}
+                    <input class="novote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ s.num_up }}</span>
+                    <input class="novote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ s.num_dw }}</span>
+                    {{ s.text }}
+                </form>
+        {% elif uv.choice == uv.UP %}
+                <form action="{% url 'svote' u.id p.id g.id s.id %}" method="post">
+                    {%  csrf_token %}
+                    <input class="upvote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ s.num_up }}</span>
+                    <input class="novote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ s.num_dw }}</span>
+                    {{ s.text }}
+                </form>
+        {% elif uv.choice == uv.DW %}
+                <form action="{% url 'svote' u.id p.id g.id s.id %}" method="post">
+                    {%  csrf_token %}
+                    <input class="novote" name="vote" type="submit" value="Up"/><span class="upnumber">{{ s.num_up }}</span>
+                    <input class="dwvote" name="vote" type="submit" value="Down"/><span class="dwnumber">{{ s.num_dw }}</span>
+                    {{ s.text }}
+                </form>
+        {%  endif %}
+
+    </li>
+    {%  endfor %}
+
+
+
+    </ol>
+    <form action="{% url 'specconstructor' u.id p.id g.id %}" method="get">
+        <button type="submit">Propose new Specific</button>
+    </form>
+    <form action="{% url 'facetsview' u.id p.id g.id %}" method="get">
+        <input type="submit" name="facetview" value="View facets"/>
+    </form>
+        <form action="{% url 'main' u.id %}" method="get">
+            <button type="submit" name="backtomain">Back to main page</button>
+        </form>
+</body>
+</html>

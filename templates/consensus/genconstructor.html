@@ -1,0 +1,20 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }}: Propose new general</title>
+</head>
+<body>
+    <h1 align="Center">Create new general</h1>
+
+    <form action="{% url 'gencreate' u.id p.id %}" method="post"> {% csrf_token %}
+        Propose a general objective:<br>
+        <input type="text" name="text"/>
+        <br>
+        <input type="submit" name="submit" value="Submit"/>
+    </form>
+
+</body>
+</html>

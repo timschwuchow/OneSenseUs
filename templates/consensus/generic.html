@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Generic page
+</body>
+</html>
+
+       {#  {% elif ugv.choice == ugv.UP %} #}
+            <form action="{% url 'vote' u.id g.id %}" method="post"}>
+                {%  csrf_token %}
+                <input class="upvote" name="vote" type="submit" value="Up"/>
+                <input class="novote" name="vote" type="submit" value="Down"/>
+            {{ ugv.general.general_text }}
+            </form>
+        {% elif ugv.choice == ugv.DW %}
+            <form action="{% url 'vote' u.id g.id %}" method="post"}>
+                {%  csrf_token %}
+                <input class="novote" name="vote" type="submit" value="Up"/>
+                <input class="dwvote" name="vote" type="submit" value="Down"/>
+            {{ ugv.general.general_text }}
+            </form>

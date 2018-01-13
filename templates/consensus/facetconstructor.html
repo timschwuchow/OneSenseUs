@@ -1,0 +1,20 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }} New Facet Proposal Form</title>
+</head>
+<body>
+    <h1 align="Center">Propose New Facet</h1>
+    <p><strong>General text</strong>: {{ g.general_text }}</p>
+
+    <form action="{% url 'facetcreate' u.id p.id g.id %}" method="post"> {% csrf_token %}
+        Propose a facet related to accomplishing the general:<br>
+        <input type="text" name="text"/><br>
+        <input type="submit" name="submit" value="Submit"/>
+    </form>
+
+</body>
+</html>

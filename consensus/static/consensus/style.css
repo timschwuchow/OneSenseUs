@@ -1,0 +1,62 @@
+
+
+.listitembox {
+
+}
+
+.updownbuttonbox {
+
+}
+
+.bundleentrybox {
+
+}
+
+body.login {
+    background-image: url("images/OnesenseusSplash.jpg");
+    background-size: cover;
+}
+
+    /*display: block;*/
+    /*margin: auto;*/
+    /*width: 0%;*/
+/*}*/
+
+
+div.content { 
+    width: 1000px;  
+    padding: 10px;     
+}
+#voting{
+    width:60px;
+    height:40px;
+}
+.upvote{
+    width:60px;
+    height: 20px;
+    cursor: pointer;
+    background-color: green;
+}
+.dwvote{
+    width:60px;
+    height: 20px;
+    background-color: red;
+    cursor: pointer;
+}
+
+.novote{
+    width:60px;
+    height:20px;
+    cursor:pointer;
+}
+
+.upnumber{
+    color:green;
+}
+.dwnumber{
+    color:red;
+}
+
+div.specific { 
+    
+}

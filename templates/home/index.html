@@ -1,0 +1,16 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consensus Main Page</title>
+</head>
+<body>
+<div class="hcenter">
+    <form action="{%  url 'login' %}" method="get" >
+        <input class="enter" type="submit" name="submit" value="Go"/>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }}: General Bundle Proposal Form</title>
+</head>
+<body>
+    <h1 align="Center">Propose New General Bundle Form</h1>
+    <p><strong>Project {{ p.name }}:</strong></p>
+    <p> Choices </p>
+    <form action="{% url 'generalbundlecreate' u.id p.id %}" method="post"> {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit"/>
+    </form>
+
+    <form action="{% url 'generalbundlelist' u.id p.id %}" method="get">
+        <input type="submit" value="Return to bundle list"/>
+    </form>
+    <form action="{%  url 'genconstructor' u.id p.id %}" method="get">
+        <input type="submit" value="Create new general"/>
+    </form>
+</body>
+</html>

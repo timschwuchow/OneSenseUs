@@ -1,0 +1,30 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project {{ p.name }}:Facets Page</title>
+</head>
+<body>
+
+
+    <h3 align="center"> List of facets</h3>
+    <p align="center"> <strong>General text:</strong> {{ g.text }}</p>
+    <h2 align="center"> Facets list</h2>
+    <ol>
+        {%  for f in flist  %}
+            <li>
+                {{ f.text }}
+            </li>
+        {%  endfor %}
+    </ol>
+
+        <form action="{% url 'facetconstructor' u.id p.id g.id %}" method="get">
+        <button type="submit">Propose new facet</button>
+    </form>
+        <form action="{% url 'general' u.id p.id g.id %}" method="get">
+            <button type="submit">Back to general</button>
+        </form>
+</body>
+</html>

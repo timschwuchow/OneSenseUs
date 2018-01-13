@@ -1,0 +1,22 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Projects</title>
+</head>
+<body>
+Current Projects
+<ol>
+    {%  for p in plist %}
+        <li>
+            <a href="{%  url 'generalbundlelist' u.id p.id %}" >{{ p.text }}</a>
+        </li>
+    {%  endfor %}
+    <form method="post" action="{% url 'projectconstructor' u.id %}"> {% csrf_token %}
+        <input type="submit" value="Create new project"/>
+    </form>
+</ol>
+</body>
+</html>

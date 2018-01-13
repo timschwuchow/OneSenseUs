@@ -1,0 +1,21 @@
+{%  load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'consensus/style.css' %}"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consensus Project Signup Page</title>
+</head>
+<body class="login">
+<div align="center">
+    <h1> Consensus Project User Signup Page </h1>
+    <form action="{% url 'trysignup' %}" method="post">
+        {%  csrf_token %}
+        User Name: <input type="text" name="name"/>
+        Password: <input type="password" name="password"/>
+        <input type="submit" name="submit" value="Submit"/>
+
+    </form>
+</div>
+</body>
+</html>
